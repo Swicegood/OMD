@@ -1,0 +1,2 @@
+docker build -t omd-labs-ubuntu:1 .
+sudo docker exec -d OMD bash /home/dockerscriptetchosts.sh

@@ -1,0 +1,20 @@
+FROM consol/omd-labs-ubuntu:latest
+ENV NEW_SITENAME=monitoring 
+RUN echo "export SITENAME=$NEW_SITENAME" > .sitename.env && echo "RESTORE new site:$NEW_SITENAME" && omd -f rm demo &&  omd create -u 1001 -g 1001 $NEW_SITENAME || true
+RUN apt update
+RUN apt install libnet-dns-perl sipsak sendmail sasl2-bin -y
+RUN mkdir -p /usr/local/nagios/libexec/traffic/; chown -R monitoring:monitoring  /usr/local/nagios
+ADD dockerscriptetchosts.sh /home/dockerscriptetchosts.sh
+RUN  echo "monitoring ALL=NOPASSWD:/usr/sbin/sendmail" | (sudo su -c 'EDITOR="tee" visudo -f /etc/sudoers.d/sm')
+monitoring ALL=NOPASSWD:/usr/sbin/sendmail
+
+1. host script that actually works
+cd ..
+mkdir auth
+chmod 700 auth/
+
+2. ADD pem and cert and authinfo
+3. ADD submit.mc and sendmail.mc
+4. m4
+5. makemap
+

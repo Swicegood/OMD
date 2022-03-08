@@ -23,6 +23,8 @@ divert(-1)dnl
 #
 # The best documentation for this .mc file is:
 # /usr/share/doc/sendmail-doc/cf.README.gz
+# NOte from Jaga:
+# was on port 587 before it stopped working
 #
 #-----------------------------------------------------------------------------
 divert(0)dnl
@@ -65,6 +67,7 @@ dnl #
 dnl # Define connection throttling and window length
 define(`confCONNECTION_RATE_THROTTLE', `15')dnl
 define(`confCONNECTION_RATE_WINDOW_SIZE',`10m')dnl
+dnl define(`confLOG_LEVEL', `99')dnl
 dnl #
 dnl # Features
 dnl #
@@ -110,9 +113,10 @@ define(`confCLIENT_CERT', `CERT_DIR/mycert.pem')
 define(`confCLIENT_KEY', `CERT_DIR/mykey.pem')
 dnl #
 dnl # GMAIL FORWARDING
-define(`SMART_HOST',`mail.atourcity.com')dnl
-define(`RELAY_MAILER_ARGS', `TCP $h 587')dnl
-define(`ESMTP_MAILER_ARGS', `TCP $h 587')dnl
+define(`SMART_HOST',`192.168.0.71')dnl
+define(`RELAY_MAILER',`esmtp')dnl
+define(`RELAY_MAILER_ARGS', `TCP $h 25')dnl
+define(`ESMTP_MAILER_ARGS', `TCP $h 25')dnl
 define(`confAUTH_OPTIONS', `A p')dnl
 TRUST_AUTH_MECH(`EXTERNAL DIGEST-MD5 CRAM-MD5 LOGIN PLAIN')dnl
 define(`confAUTH_MECHANISMS', `EXTERNAL GSSAPI DIGEST-MD5 CRAM-MD5 LOGIN PLAIN')dnl

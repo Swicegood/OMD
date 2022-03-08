@@ -58,18 +58,18 @@ define(`confCF_VERSION', `client')dnl
 dnl dirty hack to keep proto.m4 from complaining
 define(`__OSTYPE__',`')
 define(`confTIME_ZONE', `USE_TZ')dnl
-MASQUERADE_AS(`atourcity.com')dnl
+MASQUERADE_AS(`192.168.0.71')dnl
 FEATURE(`allmasquerade')dnl
 FEATURE(`masquerade_envelope')dnl
 FEATURE(always_add_domain)dnl
 EXPOSED_USER(`root operator monitoring')dnl
-define(`SMART_HOST',`mail.atourcity.com')dnl
+define(`SMART_HOST',`192.168.0.71')dnl
 define(`confMAX_MESSAGE_SIZE',`10000000')dnl
 define(`confDONT_INIT_GROUPS', `True')dnl
 define(`confDEF_USER_ID',``8:112'')dnl
 define(`confDONT_PROBE_INTERFACES',true)dnl
 define(`confTO_QUEUEWARN_DSN',`')dnl
 define(`confTO_QUEUERETURN_DSN',`12h')dnl
-FEATURE(`msp', `mail.atourcity.com')dnl
+FEATURE(`msp', `192.168.0.71')dnl
 define(`confRUN_AS_USER', `monitoring:smmsp')
 

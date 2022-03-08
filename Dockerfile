@@ -10,7 +10,7 @@ RUN mkdir -p /etc/mail/certs; chmod 700 /etc/mail/certs
 ADD dsa1024.pem mycert.pem mykey.pem /etc/mail/certs/
 RUN chmod 600 /etc/mail/certs/*; ln -s /etc/mail/mycert.pem /etc/mail/CAcert.pem
 RUN mkdir -p /etc/mail/auth; chmod 700 /etc/mail/auth
-ADD client-info.db /etc/mail/auth/
+ADD auth/client-info.db /etc/mail/auth/
 ADD submit.mc sendmail.mc /etc/mail/
 RUN make -C /etc/mail/
 RUN sed -i '2s/^/source \/home\/dockerscriptetchosts.sh\n/' ~/start.sh

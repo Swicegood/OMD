@@ -1,4 +1,4 @@
-FROM consol/omd-labs-ubuntu:v4.00
+FROM consol/omd-labs-ubuntu:v3.30
 ENV NEW_SITENAME=monitoring 
 RUN echo "export SITENAME=$NEW_SITENAME" > .sitename.env && echo "RESTORE new site:$NEW_SITENAME" && omd -f rm demo &&  omd create -u 1001 -g 1001 $NEW_SITENAME || true
 RUN apt update

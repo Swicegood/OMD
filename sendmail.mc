@@ -9,22 +9,20 @@ divert(-1)dnl
 # sendmail.mc prototype config file for building Sendmail 8.15.2
 #
 # Note: the .in file supports 8.7.6 - 9.0.0, but the generated
-#	file is customized to the version noted above.
+#       file is customized to the version noted above.
 #
 # This file is used to configure Sendmail for use with Debian systems.
 #
 # If you modify this file, you will have to regenerate /etc/mail/sendmail.cf
 # by running this file through the m4 preprocessor via one of the following:
-#	* make   (or make -C /etc/mail)
-#	* sendmailconfig
-#	* m4 /etc/mail/sendmail.mc > /etc/mail/sendmail.cf
+#       * make   (or make -C /etc/mail)
+#       * sendmailconfig
+#       * m4 /etc/mail/sendmail.mc > /etc/mail/sendmail.cf
 # The first two options are preferred as they will also update other files
 # that depend upon the contents of this file.
 #
 # The best documentation for this .mc file is:
 # /usr/share/doc/sendmail-doc/cf.README.gz
-# NOte from Jaga:
-# was on port 587 before it stopped working
 #
 #-----------------------------------------------------------------------------
 divert(0)dnl
@@ -45,9 +43,9 @@ dnl #
 dnl # General defines
 dnl #
 dnl # SAFE_FILE_ENV: [undefined] If set, sendmail will do a chroot()
-dnl #	into this directory before writing files.
-dnl #	If *all* your user accounts are under /home then use that
-dnl #	instead - it will prevent any writes outside of /home !
+dnl #   into this directory before writing files.
+dnl #   If *all* your user accounts are under /home then use that
+dnl #   instead - it will prevent any writes outside of /home !
 dnl #   define(`confSAFE_FILE_ENV',             `')dnl
 dnl #
 dnl # Daemon options - restrict to servicing LOCALHOST ONLY !!!
@@ -67,7 +65,6 @@ dnl #
 dnl # Define connection throttling and window length
 define(`confCONNECTION_RATE_THROTTLE', `15')dnl
 define(`confCONNECTION_RATE_WINDOW_SIZE',`10m')dnl
-dnl define(`confLOG_LEVEL', `99')dnl
 dnl #
 dnl # Features
 dnl #
@@ -114,7 +111,6 @@ define(`confCLIENT_KEY', `CERT_DIR/mykey.pem')
 dnl #
 dnl # GMAIL FORWARDING
 define(`SMART_HOST',`192.168.0.71')dnl
-define(`RELAY_MAILER',`esmtp')dnl
 define(`RELAY_MAILER_ARGS', `TCP $h 25')dnl
 define(`ESMTP_MAILER_ARGS', `TCP $h 25')dnl
 define(`confAUTH_OPTIONS', `A p')dnl
@@ -123,4 +119,3 @@ define(`confAUTH_MECHANISMS', `EXTERNAL GSSAPI DIGEST-MD5 CRAM-MD5 LOGIN PLAIN')
 MAILER_DEFINITIONS
 MAILER(`local')dnl
 MAILER(`smtp')dnl
-

@@ -16,5 +16,5 @@ RUN chmod 600 /etc/mail/certs/*; ln -s /etc/mail/mycert.pem /etc/mail/CAcert.pem
 RUN mkdir -p /etc/mail/auth; chmod 700 /etc/mail/auth
 ADD auth/client-info.db /etc/mail/auth/
 ADD submit.mc sendmail.mc /etc/mail/
-RUN make -C /etc/mail/
+RUN m4 sendmail.mc > sendmail.cf && m4 submit.mc > submit.cf
 RUN sed -i '2s/^/source \/home\/cleanup-apache-pid.sh\nsource \/home\/dockerscriptetchosts.sh\n/' ~/start.sh

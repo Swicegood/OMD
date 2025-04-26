@@ -110,7 +110,7 @@ define(`confCLIENT_CERT', `CERT_DIR/mycert.pem')
 define(`confCLIENT_KEY', `CERT_DIR/mykey.pem')
 dnl #
 dnl # GMAIL FORWARDING
-define(`SMART_HOST',`192.168.0.71')dnl
+define(`SMART_HOST',`cs.newgoloka.local')dnl
 define(`RELAY_MAILER_ARGS', `TCP $h 25')dnl
 define(`ESMTP_MAILER_ARGS', `TCP $h 25')dnl
 define(`confAUTH_OPTIONS', `A p')dnl

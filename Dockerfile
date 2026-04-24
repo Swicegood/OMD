@@ -2,6 +2,12 @@ FROM consol/omd-labs-ubuntu:v3.30
 ENV NEW_SITENAME=monitoring 
 RUN echo "export SITENAME=$NEW_SITENAME" > .sitename.env && echo "RESTORE new site:$NEW_SITENAME" && omd -f rm demo &&  omd create -u 1001 -g 1001 $NEW_SITENAME || true
 RUN apt update
+RUN apt install -y ca-certificates curl gnupg apt-transport-https && rm -rf /var/lib/apt/lists/*
+RUN mkdir -p /etc/apt/keyrings \
+  && curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | gpg --dearmor -o /etc/apt/keyrings/cloud.google.gpg \
+  && echo "deb [signed-by=/etc/apt/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" > /etc/apt/sources.list.d/google-cloud-sdk.list
+RUN apt update && apt install -y google-cloud-cli && rm -rf /var/lib/apt/lists/*
+RUN apt update
 RUN apt install libnet-dns-perl sipsak sendmail sasl2-bin -y
 RUN apt install -y cpanminus
 RUN cpanm --force Telephony::Asterisk::AMI

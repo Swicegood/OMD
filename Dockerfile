@@ -2,6 +2,7 @@ FROM consol/omd-labs-ubuntu:v3.30
 ENV NEW_SITENAME=monitoring 
 RUN echo "export SITENAME=$NEW_SITENAME" > .sitename.env && echo "RESTORE new site:$NEW_SITENAME" && omd -f rm demo &&  omd create -u 1001 -g 1001 $NEW_SITENAME || true
 RUN mkdir -p /etc/apt/trusted.gpg.d \
+  && curl -fsSL "http://labs.consol.de/repo/stable/GPG-KEY-4096" -o /etc/apt/trusted.gpg.d/labs.consol.de-GPG-KEY-4096.asc \
   && curl -fsSL "http://labs.consol.de/repo/stable/monitoring-repo-consol-de-gpg-2026.asc" -o /etc/apt/trusted.gpg.d/monitoring-repo-consol-de-gpg-2026.asc
 RUN apt update
 RUN apt install -y ca-certificates curl gnupg apt-transport-https && rm -rf /var/lib/apt/lists/*

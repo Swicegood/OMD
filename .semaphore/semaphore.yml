@@ -1,16 +1,19 @@
 version: v1.0
-name: Minimal Pipeline
-
+name: Initial Pipeline
 agent:
   machine:
     type: e1-standard-2
     os_image: ubuntu2404
-
 blocks:
-  - name: Smoke test
+  - name: 'Block #1'
     task:
       jobs:
-        - name: Checkout + echo
+        - name: 'Job #1'
           commands:
             - checkout
-            - echo "semaphore yaml loaded"
+            - echo $DOCKER_PASSWORD | docker login --username "$DOCKER_USERNAME" --password-stdin
+            - 'docker pull $DOCKER_USERNAME/omd-labs-ubuntu:v3.30 || true'
+            - 'docker build --cache-from=$DOCKER_USERNAME/omd-labs-ubuntu:v3.30 -t $DOCKER_USERNAME/omd-labs-ubuntu:v3.30 .'
+            - 'docker push $DOCKER_USERNAME/omd-labs-ubuntu:v3.30'
+      secrets:
+        - name: dockerhub
